@@ -14,7 +14,7 @@ def ChamberP(pambient,k,M):
     return po
 
 def ExpansionRatio(k,M):
-    ER=(1/M)*((1+0.5*(k-1)*M**2)/(0.5*(k+1)))**((0.5*(k+1))/(k-1))
+    ER=(1/M)*((1+((k-1)/2)*M**2)/((k+1)/2))**((k+1)/(2*(k-1)))
     return ER
 
 def AreaRatio(k,p2p1):
@@ -115,12 +115,36 @@ def ExhaustVMet(k,R,T1,p2p1):
     return v
 
 def ExhaustVUS(k,R,ToM,PR):
-    v=(((2*k*32.2)/(k-1))*R*ToM*(1-((PR)**-1)**((k-1)/k)))**(1/2)
+    v=(((2*k*32.2)/(k-1))*R*ToM*(1-((PR)**-1)**((k-1)/k)))**0.5
     return v
+
+def ExhaustVMol(k,R,t1,MW,PR):
+    v=(((2*k*R*t1)/((k-1)*MW))*(1-(PR**((k-1)/k))))**0.5
+    return v
+
+def ExhaustVMAX(R,k,t1):
+    v=((2*R*t1*k)/(k-1))**0.5
+    return v
+
+def ThroatV(k,R,ToM):
+    v=(2*k*R*ToM/(k+1))**0.5
+    return v
+
+def Sonic(k,R,t):
+    a=(k*R*t)**0.5
+    return a
 
 def CfIdeal(k,p2p1):
     Cf=(((2*k**2)/(k-1))*(2/(k+1))**((k+1)/(k-1))*(1-(p2p1)**((k-1)/k)))**0.5
     return Cf
+
+def T2Ideal(t1,p1,p2,k):
+    t2=t1*(p1/p2)**((1-k)/k)
+    return t2
+
+def ExitP(p1,k,Me):
+    p=p1*(1+0.5*(k-1)*Me**2)**(-k/(k-1))
+    return p
 
 def FindEpsln(numbers,eps):   
      numbers = np.asarray(numbers) 
