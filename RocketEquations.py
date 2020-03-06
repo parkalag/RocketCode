@@ -114,8 +114,8 @@ def ExhaustVMet(k,R,T1,p2p1):
     v=(((2*k)/(k-1))*R*T1*(1-(p2p1)**((k-1)/k)))**(1/2)
     return v
 
-def ExhaustVUS(k,R,ToM,PR):
-    v=(((2*k*32.2)/(k-1))*R*ToM*(1-((PR)**-1)**((k-1)/k)))**0.5
+def ExhaustVUS(k,R,t1,MW,PR):
+    v=(((2*k*R*t1*32.2)/((k-1)*MW))*(1-(PR**((k-1)/k))))**0.5
     return v
 
 def ExhaustVMol(k,R,t1,MW,PR):
@@ -149,4 +149,16 @@ def ExitP(p1,k,Me):
 def FindEpsln(numbers,eps):   
      numbers = np.asarray(numbers) 
      i=(np.abs(numbers - eps)).argmin() 
-     return numbers[i]  
+     return numbers[i]
+
+def TotalWdot(F,Isp):
+    w=F/Isp
+    return w
+
+def OxWdot(Wdot,r):
+    wo=Wdot*r/(r+1)
+    return wo
+
+def FuelWdot(Wdot,r):
+    wf=Wdot/(r+1)
+    return wf
