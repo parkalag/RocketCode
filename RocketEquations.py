@@ -9,6 +9,52 @@ import time
 import math
 from IPython.display import display
 
+def PropType(Ox,Fuel):
+    
+    # Oxygen Based
+    if Ox=='Oxygen' and Fuel=='Methane':
+        C=[3.20,1.19,0.81,3526,1835,20.3296,1.2]
+    elif Ox=='Oxygen' and Fuel=='Hydrazine':
+        C=[0.74,0.66,1.06,3285,1871,18.3,301,1.25]
+    elif Ox=='Oxygen' and Fuel=='Hydrogen':
+        C=[3.40,0.21,0.26,2959,2428,8.9,386,1.26]
+    elif Ox=='Oxygen' and Fuel=='RP-1':
+        C=[2.24,1.59,1.01,3571,1774,21.9,285.4,1.24]
+    elif Ox=='Oxygen' and Fuel=='UDMH':
+        C=[1.39,0.96,0.96,3542,1835,19.8,295,1.25]
+
+    # Flourine Based
+    elif Ox=='Flourine' and Fuel=='Hydrazine':
+        C=[2.30,1.54,1.31,4713,2208,19.4,365,1.33]
+    elif Ox=='Flourine' and Fuel=='Hydrogen':
+        C=[4.54,0.21,0.33,3080,2534,8.9,389,1.33]
+
+    # Nitrogen Tetroxide Based    
+    elif Ox=='Nitrogen Tetroxide' and Fuel=='Hydrazine':
+        C=[1.08,0.75,1.20,3258,1765,19.5,283,1.26]
+    elif Ox=='Nitrogen Tetroxide' and Fuel=='UDMH/Hydrazine':
+        C=[1.62,1.01,1.18,3242,1652,21.0,278,1.24]
+    elif Ox=='Nitrogen Tetroxide' and Fuel=='RP-1':
+        C=[3.4,1.05,1.23,3290,'Unknown',24.1,297,1.23]
+    elif Ox=='Nitrogen Tetroxide' and Fuel=='MMH':
+        C=[1.65,1.00,1.16,3200,1591,21.7,278,1.23]
+
+    # Nitric Acid Based
+    elif Ox=='Nitric Acid' and Fuel=='RP-1':
+        C=[4.1,2.12,1.35,3175,1594,24.6,258,1.22]
+    elif Ox=='Nitric Acid' and Fuel=='UDMH/Hydrazine':
+        C=[1.73,1.00,1.23,2997,1682,20.6,272,1.22]
+
+    # Hydrogen Peroxide Based
+    elif Ox=='Hydrogen Peroxide' and Fuel=='RP-1':
+        C=[7.0,4.01,1.29,2760,'Unknown',21.7,297,1.19]
+
+    # Error
+    else:
+        raise ValueError('Incompatible or Incorrect Propellant Combination Chosen')
+
+    return C
+
 def ChamberP(pambient,k,M):
     po=pambient*(1+0.5*(k-1)*M**2)**(k/(k-1))
     return po
@@ -162,3 +208,6 @@ def OxWdot(Wdot,r):
 def FuelWdot(Wdot,r):
     wf=Wdot/(r+1)
     return wf
+E=PropType('Oxygen','Hydrogen')
+
+print(E)
