@@ -13,7 +13,7 @@ def PropType(Ox,Fuel):
     
     # Oxygen Based
     if Ox=='Oxygen' and Fuel=='Methane':
-        C=[3.20,1.19,0.81,3526,1835,20.3296,1.2]
+        C=[3.20,1.19,0.81,3526,1835,20.3,296,1.2]
     elif Ox=='Oxygen' and Fuel=='Hydrazine':
         C=[0.74,0.66,1.06,3285,1871,18.3,301,1.25]
     elif Ox=='Oxygen' and Fuel=='Hydrogen':
@@ -49,11 +49,92 @@ def PropType(Ox,Fuel):
     elif Ox=='Hydrogen Peroxide' and Fuel=='RP-1':
         C=[7.0,4.01,1.29,2760,'Unknown',21.7,297,1.19]
 
+    # Monoprop and Cold Gas
+    elif Ox=='N/A' and Fuel=='Air':
+        C=[1.0,1.0,1.3,273.15,408.904,28.9647,55.0,1.4]
+
     # Error
     else:
         raise ValueError('Incompatible or Incorrect Propellant Combination Chosen')
 
     return C
+
+def LARA(L15,AR):       # Length and Arera Ratio Give Angles
+
+    if L15>=0.9:
+        if 1<AR<=4:
+            C=[18,10]
+        elif 4<AR<=5:
+            C=[19,9]
+        elif 5<AR<=6:
+            C=[20,8]
+        elif 6<AR<=8:
+            C=[21,7]
+        elif 8<AR<=10:
+            C=[22,6]
+        elif 10<AR<=20:
+            C=[24,6]
+        elif 20<AR<=30:
+            C=[26,5]
+        elif 30<AR<=40:
+            C=[28,5]
+        elif 40<AR<=50:
+            C=[29,5]
+        elif 50<AR<=100:
+            C=[31,5]
+        else:
+            C=[33,4]
+    elif L15>=0.8:
+        if 1<AR<=4:
+            C=[21,14]
+        elif 4<AR<=5:
+            C=[22,13]
+        elif 5<AR<=6:
+            C=[24,13]
+        elif 6<AR<=8:
+            C=[25,11]
+        elif 8<AR<=10:
+            C=[26,11]
+        elif 10<AR<=20:
+            C=[28,10]
+        elif 20<AR<=30:
+            C=[29,9]
+        elif 30<AR<=40:
+            C=[30,8]
+        elif 40<AR<=50:
+            C=[31,8]
+        elif 50<AR<=100:
+            C=[33,7]
+        else:
+            C=[34,7]
+    elif L15>=0.7:
+        if 1<AR<=4:
+            C=[23,18]
+        elif 4<AR<=5:
+            C=[24,17]
+        elif 5<AR<=6:
+            C=[26,16]
+        elif 6<AR<=8:
+            C=[27,14]
+        elif 8<AR<=10:
+            C=[28,14]
+        elif 10<AR<=20:
+            C=[30,13]
+        elif 20<AR<=30:
+            C=[32,12]
+        elif 30<AR<=40:
+            C=[33,11]
+        elif 40<AR<=50:
+            C=[34,11]
+        elif 50<AR<=100:
+            C=[35,10]
+        else:
+            C=[37,9]
+    else:
+        raise ValueError('Data for this range is not available.')
+        
+    return C
+
 
 def ChamberP(pambient,k,M):
     po=pambient*(1+0.5*(k-1)*M**2)**(k/(k-1))
@@ -208,6 +289,4 @@ def OxWdot(Wdot,r):
 def FuelWdot(Wdot,r):
     wf=Wdot/(r+1)
     return wf
-E=PropType('Oxygen','Hydrogen')
 
-print(E)
