@@ -49,9 +49,11 @@ def PropType(Ox,Fuel):
     elif Ox=='Hydrogen Peroxide' and Fuel=='RP-1':
         C=[7.0,4.01,1.29,2760,'Unknown',21.7,297,1.19]
 
-    # Monoprop and Cold Gas
+    # Monoprop, Solid, and Cold Gas
     elif Ox=='N/A' and Fuel=='Air':
         C=[1.0,1.0,1.3,273.15,408.904,28.9647,55.0,1.4]
+    elif Ox=='N/A' and Fuel=='Sorbitol':
+        C=[1.0,1.0,1.0,1600,909,39.86,164,1.1362]
 
     # Error
     else:
