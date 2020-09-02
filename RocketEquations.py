@@ -10,6 +10,8 @@ import math
 from IPython.display import display
 
 def PropType(Ox,Fuel):
+
+    # O/Fm, O/Fv, SG, T, c*, MW, Isp, k
     
     # Oxygen Based
     if Ox=='Oxygen' and Fuel=='Methane':
@@ -49,11 +51,15 @@ def PropType(Ox,Fuel):
     elif Ox=='Hydrogen Peroxide' and Fuel=='RP-1':
         C=[7.0,4.01,1.29,2760,'Unknown',21.7,297,1.19]
 
+    # Nitrous Oxide Based
+    elif Ox=='Nitrous Oxide' and Fuel=='ABS':
+        C=[5.0,10.0,'SG',3100.0,1560.0,25.6,190.0,1.15]
+
     # Monoprop, Solid, and Cold Gas
     elif Ox=='N/A' and Fuel=='Air':
         C=[1.0,1.0,1.3,273.15,408.904,28.9647,55.0,1.4]
     elif Ox=='N/A' and Fuel=='Sorbitol':
-        C=[1.857,1.0,1.0,1600,909,39.86,164,1.1362]
+        C=[1.857,1.0,'SG',1600,909,39.86,164,1.1362]
 
     # Error
     else:
