@@ -53,7 +53,7 @@ def PropType(Ox,Fuel):
 
     # Nitrous Oxide Based
     elif Ox=='Nitrous Oxide' and Fuel=='ABS':
-        C=[5.0,10.0,'SG',3100.0,1560.0,25.6,190.0,1.15]
+        C=[5.0,10.0,'SG',3200.0,1575.0,25.7,200.0,1.16]
 
     # Monoprop, Solid, and Cold Gas
     elif Ox=='N/A' and Fuel=='Air':
